@@ -1,0 +1,33 @@
+header {
+  font-family: Tahoma, Arial;
+  font-size: 18px;
+  top: 0px;
+  padding-left: 10px;
+  background-color: darkblue;
+  width: 100px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+nav {
+  color: #fff;
+  background: #222;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1030;
+  padding: .5rem 0;
+}
+nav a.button{
+  background-color: white;
+}
+footer {
+  margin: 0px;
+  text-align: center;
+  background-color: black;
+  position: fixed;
+  color: white;
+  width: 100%;
+  bottom: 0px;
+  line-height: 2em;
+}
