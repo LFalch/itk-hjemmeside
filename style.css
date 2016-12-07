@@ -1,25 +1,32 @@
 header {
   font-family: Tahoma, Arial;
-  font-size: 18px;
   top: 0px;
   padding-left: 10px;
   background-color: darkblue;
   width: 100px;
   padding-top: 5px;
   padding-bottom: 5px;
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 2em;
 }
 nav {
   color: #fff;
   background: #222;
   position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1030;
   padding: .5rem 0;
+  width: 100%;
+  z-index: 20;
 }
-nav a.button{
+nav a.button {
   background-color: white;
+}
+nav a.button.active {
+  background-color: #ddd;
+}
+.container {
+  margin-bottom: 5em;
 }
 footer {
   margin: 0px;
