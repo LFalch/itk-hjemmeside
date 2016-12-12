@@ -1,6 +1,6 @@
 <div id="magi"></div>
 <p>Prøv at bevæge den</p>
-<script src="http://pixijs.download/dev/pixi.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.2.3/pixi.min.js"></script>
 <script type="text/javascript">
 var KEYS = [];
 var KEY = (function() {
@@ -69,8 +69,10 @@ function getTexture(name) {
 var center = {x: WIDTH/2, y: HEIGHT/2};
 var sprite;
 
-PIXI.loader.load(setup);
+var lastTs = null;
+var deltaT = 0;
 
+PIXI.loader.load(setup);
 
 function setup() {
     sprite = getTexture('icon');
@@ -79,25 +81,30 @@ function setup() {
     loop();
 }
 
+const SPEED = 5e-1;
+
 function handle() {
     if (KEY.isDown("a"))
-        center.x -= 1;
+        center.x -= SPEED * deltaT;
     if (KEY.isDown("d"))
-        center.x += 1;
+        center.x += SPEED * deltaT;
     if (KEY.isDown("w"))
-        center.y -= 1;
+        center.y -= SPEED * deltaT;
     if (KEY.isDown("s"))
-        center.y += 1;
+        center.y += SPEED * deltaT;
     sprite.position.x = center.x + 100*Math.cos(sprite.t);
     sprite.position.y = center.y + 100*Math.sin(sprite.t);
     sprite.rotation = sprite.t+Math.PI/2;
-    sprite.t += 0.01;
+    sprite.t += deltaT/1000;
 }
 
 
-function loop() {
+function loop(ts) {
+    if (!lastTs) lastTs = ts;
+    deltaT = ts - lastTs;
+    lastTs = ts;
     requestAnimationFrame(loop); // calles itself 60hz
-    handle(); // where all the logic is
+    if (deltaT) handle(); // where all the logic is
     renderer.render(stage); // renders whatever is on stage
 }
 </script>
