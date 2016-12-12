@@ -1,3 +1,8 @@
+/*
+ * Skrevet af Lucas Falch Sørensen, 2016
+*/
+
+/* Få headeren til at se flot ud og sidde det rigtige sted. */
 header {
   font-family: Tahoma, Arial;
   top: 0px;
@@ -10,6 +15,7 @@ header {
   margin-right: 20px;
   font-size: 2em;
 }
+/* Sæt en enkel navbar øverst */
 nav {
   color: #fff;
   background: #222;
@@ -18,19 +24,24 @@ nav {
   padding: .5rem 0;
   width: 100%;
   min-width: 480px;
+  /* Vær sikker på den vises over alt andet */
   z-index: 20;
 }
+/* Gør knapperne hvide */
 nav a.button {
   background-color: white;
   padding: 0px 15px;
 }
+/* Gør knappen til den aktive side en smule grå */
 nav a.button.active {
   background-color: #ddd;
 }
+/* Skub alt teksten lidt ned, så man kan se den. */
 .container {
   margin-top: 25%;
   margin-bottom: 5em;
 }
+/* Sæt en footer i bunden */
 footer {
   margin: 0px;
   text-align: center;
