@@ -1,10 +1,10 @@
 // Funktion til at trække p-variablen ud af query-delen af URL'en,
 function findPageVariabel() {
   var searchString = window.location.search.substring(1),
-      i, val, params = searchString.split("&");
+      i, val, params = searchString.split('&');
 
   for (i=0;i<params.length;i++) {
-    var val = params[i].split("=");
+    var val = params[i].split('=');
     if (val[0] == 'p') {
       return val[1];
     }
@@ -22,7 +22,7 @@ function sætSide(side) {
                 // Sæt den første .container indhold til at være den fundnes sides indhold
                 document.getElementById('indhold').innerHTML = http.responseText;
             else if (side !== '404')
-                // Hvis siden ikke fandtes, får man en standardside.
+                // Hvis siden ikke findes, får man en standardside.
                 sætSide('404');
             else
                 console.error('Selv 404-siden kunne ikke findes!');

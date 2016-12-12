@@ -1,0 +1,103 @@
+<div id="magi"></div>
+<p>Prøv at bevæge den</p>
+<script src="http://pixijs.download/dev/pixi.min.js"></script>
+<script type="text/javascript">
+var KEYS = [];
+var KEY = (function() {
+    let obj = {
+        add: function(name, keyCode) {
+            let key = {};
+            key.isDown = false;
+            key.keyUp = null;
+
+            KEY[name] = [keyCode];
+            KEYS[keyCode] = key;
+        },
+        addAlias: function(keycode, name) {
+            KEYS[keycode] = KEYS[this[name][0]];
+            this[name].push(keycode);
+        },
+        isDown: function(key) {
+            return KEYS[KEY[key][0]].isDown;
+        }
+    };
+    window.addEventListener("keydown", function(e) {
+        let key = KEYS[e.keyCode];
+        if (key) {
+            key.isDown = true;
+            e.preventDefault();
+        }
+    }, false);
+    window.addEventListener("keyup", function(e) {
+        let key = KEYS[e.keyCode];
+        if (key) {
+            if (key.keyUp) key.keyUp();
+            key.isDown = false;
+            e.preventDefault();
+        }
+    }, false);
+
+    return obj;
+})();
+// Define keys
+KEY.add("w", 87);
+KEY.add("a", 65);
+KEY.add("s", 83);
+KEY.add("d", 68);
+KEY.addAlias(38, "w");
+KEY.addAlias(40, "s");
+KEY.addAlias(39, "d");
+KEY.addAlias(37, "a");
+
+
+// Canvas Size
+const WIDTH = 1280;
+const HEIGHT = 720;
+
+var renderer = PIXI.autoDetectRenderer(WIDTH, HEIGHT);
+renderer.backgroundColor = 0xffffff;
+document.getElementById("magi").appendChild(renderer.view);
+
+var stage = new PIXI.Container();
+
+PIXI.loader.add('icon', 'img/favicon.png');
+
+function getTexture(name) {
+    return new PIXI.Sprite(PIXI.loader.resources[name].texture);
+}
+
+var center = {x: WIDTH/2, y: HEIGHT/2};
+var sprite;
+
+PIXI.loader.load(setup);
+
+
+function setup() {
+    sprite = getTexture('icon');
+    sprite.t = -Math.PI/2;
+    stage.addChild(sprite);
+    loop();
+}
+
+function handle() {
+    if (KEY.isDown("a"))
+        center.x -= 1;
+    if (KEY.isDown("d"))
+        center.x += 1;
+    if (KEY.isDown("w"))
+        center.y -= 1;
+    if (KEY.isDown("s"))
+        center.y += 1;
+    sprite.position.x = center.x + 100*Math.cos(sprite.t);
+    sprite.position.y = center.y + 100*Math.sin(sprite.t);
+    sprite.rotation = sprite.t+Math.PI/2;
+    sprite.t += 0.01;
+}
+
+
+function loop() {
+    requestAnimationFrame(loop); // calles itself 60hz
+    handle(); // where all the logic is
+    renderer.render(stage); // renders whatever is on stage
+}
+</script>
