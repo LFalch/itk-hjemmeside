@@ -17,15 +17,18 @@ nav {
   top: 0;
   padding: .5rem 0;
   width: 100%;
+  min-width: 480px;
   z-index: 20;
 }
 nav a.button {
   background-color: white;
+  padding: 0px 15px;
 }
 nav a.button.active {
   background-color: #ddd;
 }
 .container {
+  margin-top: 25%;
   margin-bottom: 5em;
 }
 footer {
@@ -37,7 +40,4 @@ footer {
   width: 100%;
   bottom: 0px;
   line-height: 2em;
-}
-#indhold {
-    margin-top: 25%;
 }
