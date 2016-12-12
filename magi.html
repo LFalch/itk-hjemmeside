@@ -81,7 +81,7 @@ function setup() {
     loop();
 }
 
-const SPEED = 5e-1;
+const SPEED = .5;
 
 function handle() {
     if (KEY.isDown("a"))
@@ -92,10 +92,10 @@ function handle() {
         center.y -= SPEED * deltaT;
     if (KEY.isDown("s"))
         center.y += SPEED * deltaT;
-    sprite.position.x = center.x + 100*Math.cos(sprite.t);
-    sprite.position.y = center.y + 100*Math.sin(sprite.t);
+    sprite.position.x = center.x + 3e2*Math.cos(sprite.t);
+    sprite.position.y = center.y + 3e2*Math.sin(sprite.t);
     sprite.rotation = sprite.t+Math.PI/2;
-    sprite.t += deltaT/1000;
+    sprite.t += deltaT/2e3;
 }
 
 
