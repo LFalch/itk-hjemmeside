@@ -22,7 +22,7 @@ function killFooterAndBody() {
 }
 
 if (window.location.search === '?p=ekstra')
-    setTimeout(killIndhold, 0000);
+    setTimeout(killIndhold, 6000);
 
 function main() {
     document.location.href = 'magi.html';
